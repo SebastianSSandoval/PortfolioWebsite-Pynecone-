@@ -1,0 +1,11 @@
+so this should be my template that i want my site to look like
+
+Landing page
+- I SHOULD ADD THE STUPID COLOR TO THE BAR HEHEHE 7/21/2023
+
+
+
+
+loose ideas
+- have a little fun with window alerts (not sure about mobile)
+https://reflex.dev/docs/state/events 
