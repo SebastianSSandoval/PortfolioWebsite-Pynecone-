@@ -1,7 +1,9 @@
-import pynecone as pc
+import reflex as rx
 from .navbar import navbar
 def about(): 
-    return pc.center(
-            pc.vstack(
-                pc.text("About Thingy"),
-                navbar()))
+    return rx.center(
+            rx.vstack(
+                
+                navbar(),
+                rx.text("About Thingy"),
+                rx.text("this is gonna be the about page soon enough")))
