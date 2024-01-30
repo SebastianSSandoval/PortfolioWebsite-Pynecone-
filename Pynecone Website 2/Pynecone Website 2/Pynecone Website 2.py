@@ -1,60 +1,72 @@
-"""Welcome to Pynecone! This file outlines the steps to create a basic app."""
-from pcconfig import config
 
-import pynecone as pc
+
+from rxconfig import config
+import reflex as rx
 from .navbar import navbar
 from .about import about
+from .sandbox import sandbox
+
 
 docs_url = "https://pynecone.io/docs/getting-started/introduction"
 filename = f"{config.app_name}/{config.app_name}.py"
-
-
 style = {
     "::selection": {
-        "background_color": "rgb(86, 77, 209)",
+        "background_color": "#a3273c", # sort of a rouge, controls the highlighting color of text
     },
-    pc.Text: {
-        "font_family": "Inter",
-        "font_size": 16,
+    rx.Divider: {
+        "margin_bottom": "1em",
+        "margin_top": "0.5em",
     },
-    pc.Divider: {"margin_bottom": "1em", "margin_top": "0.5em"},
-    pc.Code: {
-        "color": "rgb(86, 77, 209)",
+    rx.Heading: {
+        "font_weight": "500",
+    },
+    rx.Code: {
+        "color": "#f81ce5",
     },
 }
 
-class State(pc.State):
+class State(rx.State):
     """The app state."""
 
     pass
 
 
-def index() -> pc.Component:
-    return pc.center(
-        pc.vstack(
+
+def index() -> rx.Component:
+    return rx.fragment(
+        rx.vstack(
             navbar(),
-            pc.heading("Still Working on this (send help)", font_size="2em"),
-            pc.box("Get started by editing ", pc.code(filename, font_size="1em")),
-            pc.link(
+            rx.heading("Welcome to my website!", font_size="2em"),
+            rx.box("Get started by editing ", rx.code(filename, font_size="1em")),
+            rx.link(
                 "Check out our docs!",
                 href=docs_url,
                 border="0.1em solid",
                 padding="0.5em",
                 border_radius="0.5em",
                 _hover={
-                    "color": "rgb(107,99,246)",
+                    "color": rx.color_mode_cond(
+                        light="rgb(107,99,246)",
+                        dark="rgb(179, 175, 255)",
+                    )
                 },
             ),
-            spacing="1.5em",
+            spacing="10.5em",
             font_size="2em",
+            padding_top="10%",
         ),
-        padding_top="10%",
     )
 
 
-
-
-app = pc.App(state=State, style = style)
+# Add state and page to the app.
+app = rx.App(state=State, style = style)
 app.add_page(index)
-app.add_page(about, style = style)
+app.add_page(about)
+app.add_page(sandbox)
 app.compile()
+
+
+"""light="rgb(107,99,246)",
+                        dark="rgb(179, 175, 255)"""
+
+"""this is where i would put my thingy, if i had one"""
